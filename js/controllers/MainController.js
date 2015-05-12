@@ -1,34 +1,46 @@
-app.controller('MainController', 
-['$scope', function($scope){
+app.controller('MainController', ['$scope', '$localStorage', function($scope, $localStorage){
+
+  $localStorage.message = 'yes';
+
   $scope.enteredInput = [{
+    rating: {
+      likes: 10,
+      dislikes: 2
+    },
     'storedInput': 'Stand Up Comedy'
+  },
+  {
+    rating: {
+      likes: 5,
+      dislikes: 1
+    },
+    'storedInput': 'Random Games'
   }];
 
   $scope.submitInput = function() {
     $scope.enteredInput.push({
+      rating: {
+        likes: 0,
+        dislikes: 0
+      },
       'storedInput': $scope.userInput
     });
+    $scope.userInput = '';
   };
-
-  // $scope.trending = $scope.enteredInput[0].storedInput;
 
   $scope.delete = function(index){
     $scope.enteredInput.splice(index, 1);
   };
 
-  $scope.pubdate = new Date();
+  $scope.pubDate = new Date();
 
-  $scope.rating = {
-                    likes: 0,
-                    dislikes: 0
-                };
 
   $scope.thumbsUp = function(index){
-    $scope.rating.likes += 1;
+    $scope.enteredInput[index].rating.likes += 1;
   };
 
   $scope.thumbsDown = function(index){
-    $scope.rating.dislikes += 1;
+    $scope.enteredInput[index].rating.dislikes += 1;
   };
 
 }]);
