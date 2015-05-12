@@ -45,12 +45,16 @@
         <hr />
 
         <ul>
-          <li ng-repeat="Input in enteredInput">
-            <span> {{ Input.storedInput }} </span>  
-            <p> {{ pubdate | date }} </p>  
-            <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>
-            <p class="likes" ng-click="thumbsUp($index)" title="+1"><i class="fa fa-thumbs-o-up"></i> {{ rating.likes }}</p>   
-            <p class="dislikes" ng-click="thumbsDown($index)" title="-1"><i class="fa fa-thumbs-o-down"></i> {{ rating.dislikes }} </p> 
+          <li ng-repeat="input in enteredInput">
+            <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
+            <span ng-show="editorEnabled"> {{ input.storedInput }} 
+              <input ng-model="input.storedInput">
+            </span>  
+            <p> {{ pubDate | date }} </p>  
+            <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
+            <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>
+            <p class="likes" ng-click="thumbsUp($index)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
+            <p class="dislikes" ng-click="thumbsDown($index)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
           </li>
         </ul>
       </div>
@@ -78,6 +82,7 @@
   <!-- Angular JavaScript
     ================================================== -->
   <script type="text/javascript" src="js/shared/angular.min.js"></script>
+  <script type="text/javascript" src="js/shared/ngStorage.min.js"></script>  
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/controllers/MainController.js"></script>
 </body>
