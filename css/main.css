@@ -56,12 +56,15 @@ li > span{
   font-size: 26px;
 }
 
+hr {
+  border 
+}
 h1 {
   font-family: Snacker;
-  font-size: 63px !important;
+  font-size: 20px !important;
   text-align: center;
   margin-top: -18px;
-  } span {font-size: 83px;}
+  } span {font-size: 5 0px;}
   h1 img {
     padding-top: 18px; 
   }
@@ -152,6 +155,7 @@ h1 {
       .row-wrapper .col-md-10 ul li span i{
        cursor: pointer;
        font-size: 25px; 
+       padding-right: 10px; 
      } 
      .row-wrapper .col-md-1 ol li{
       font-size: 22px;
