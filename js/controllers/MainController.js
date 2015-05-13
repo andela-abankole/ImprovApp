@@ -1,8 +1,6 @@
 app.controller('MainController', ['$scope', '$localStorage', function($scope, $localStorage){
-
-  $localStorage.message = 'yes';
-
-  $scope.enteredInput = [{
+  
+  $scope.defaultInput = [{
     rating: {
       likes: 10,
       dislikes: 2
@@ -17,6 +15,13 @@ app.controller('MainController', ['$scope', '$localStorage', function($scope, $l
     'storedInput': 'Random Games'
   }];
 
+  if (!$localStorage.message) {
+    $localStorage.message = $scope.defaultInput;
+   }
+  else { 
+    $scope.enteredInput = $localStorage.message;
+  }
+
   $scope.submitInput = function() {
     $scope.enteredInput.push({
       rating: {
@@ -25,11 +30,13 @@ app.controller('MainController', ['$scope', '$localStorage', function($scope, $l
       },
       'storedInput': $scope.userInput
     });
+    $localStorage.message = $scope.enteredInput;
     $scope.userInput = '';
   };
 
   $scope.delete = function(index){
     $scope.enteredInput.splice(index, 1);
+    $localStorage.message = $scope.enteredInput;
   };
 
   $scope.pubDate = new Date();
