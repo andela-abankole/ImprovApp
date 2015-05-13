@@ -32,7 +32,8 @@
 
   <div class="container main-wrapper" ng-controller="MainController">
     <div>
-      <input type="text" ng-model="userInput" placeholder="Start typing here, Add a new improv "/>
+      <input type="" ng-model="userInput" placeholder="Start typing here, Add a new improv " required/>
+      <span></span>
       <button ng-click="submitInput()" class="button" type="addButton"><i class="fa fa-pencil"></i> write</button>
     </div>
 
@@ -45,16 +46,17 @@
         <hr />
 
         <ul>
-          <li ng-repeat="input in enteredInput">
+          <li ng-repeat="input in enteredInput | orderBy: 'rating.likes': true | orderBy: 'storedInput': true">
             <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
             <span ng-show="editorEnabled"> {{ input.storedInput }} 
-              <input ng-model="input.storedInput">
+              <input type="text" ng-model="input.storedInput">
+              <span ng-click="editorEnabled=!editorEnabled" title="save"><i class="fa fa-check-circle"></i></span>
             </span>  
-            <p> {{ pubDate | date }} </p>  
+            <p>Posted on {{ input.date | date: "MM/dd/yyyy 'at' h:mma"}} </p>  
             <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
             <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>
-            <p class="likes" ng-click="thumbsUp($index)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
-            <p class="dislikes" ng-click="thumbsDown($index)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
+            <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
+            <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
           </li>
         </ul>
       </div>
@@ -64,7 +66,7 @@
 
   <footer>
     <div class="footer-wrapper">
-      <p>&copy; Company 2015 | Improv App, Made with <i style="color: #F65A5B" class="fa fa-heart"></i> by Akinjide Bankole</p>
+      <p>&copy; Andela 2015 | Improv App, Made with <i style="color: #F65A5B" class="fa fa-heart"></i> by Akinjide Bankole</p>
       <a href="https://twitter.com/JideBhanks" class="btn btn social-buttons-a" title="Twitter"><i class="fa fa-twitter fa-fw"></i></a>   
       <a href="https://facebook.com/JideBhanks" class="btn btn social-buttons-a" title="Facebook"><i class="fa fa-facebook-f fa-fw"></i></a>
       <a href="https://github.com/andela-abankole" class="btn btn social-buttons-a" title="Github"><i class="fa fa-github fa-fw"></i></a>
