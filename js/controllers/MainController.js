@@ -1,25 +1,10 @@
 app.controller('MainController', ['$scope', '$localStorage', function($scope, $localStorage){
-  
-  $scope.defaultInput = [{
-    rating: {
-      likes: 10,
-      dislikes: 2
-    },
-    'storedInput': 'Stand Up Comedy'
-  },
-  {
-    rating: {
-      likes: 5,
-      dislikes: 1
-    },
-    'storedInput': 'Random Games'
-  }];
 
-  if (!$localStorage.message) {
-    $localStorage.message = $scope.defaultInput;
+  if ($localStorage.message) {
+    $scope.enteredInput = $localStorage.message;
    }
   else { 
-    $scope.enteredInput = $localStorage.message;
+    $scope.enteredInput = [];
   }
 
   $scope.submitInput = function() {
@@ -28,7 +13,8 @@ app.controller('MainController', ['$scope', '$localStorage', function($scope, $l
         likes: 0,
         dislikes: 0
       },
-      'storedInput': $scope.userInput
+      'storedInput': $scope.userInput,
+      'date': $scope.pubDate = new Date() //
     });
     $localStorage.message = $scope.enteredInput;
     $scope.userInput = '';
@@ -39,15 +25,17 @@ app.controller('MainController', ['$scope', '$localStorage', function($scope, $l
     $localStorage.message = $scope.enteredInput;
   };
 
-  $scope.pubDate = new Date();
-
-
-  $scope.thumbsUp = function(index){
-    $scope.enteredInput[index].rating.likes += 1;
+  $scope.thumbsUp = function(input){
+    input.rating.likes += 1;
+    if ($scope.enteredInput[input].rating.dislikes > 0){
+      $scope.enteredInput[input].rating.dislikes -= 1;
+    }
   };
 
-  $scope.thumbsDown = function(index){
-    $scope.enteredInput[index].rating.dislikes += 1;
+  $scope.thumbsDown = function(input){
+    input.rating.dislikes += 1;
+    if ($scope.enteredInput[input].rating.likes > 0){
+      $scope.enteredInput[input].rating.likes -= 1;
+    }
   };
-
 }]);
