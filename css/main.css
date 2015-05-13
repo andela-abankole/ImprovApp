@@ -1,39 +1,40 @@
-@font-face {
-  src: url("../fonts/Naughty-Cartoons.ttf");
-  font-family: "Naughty";
-}
+/*      Imported Fonts
+================================================== */
+@font-face {  font-family: "Snacker";
+src: url("../fonts/SnackerComic.ttf");}
 
-@font-face {
-  src: url("../fonts/SnackerComic.ttf");
-  font-family: "Snacker";
-}
+@font-face {  font-family: "CaviarDreams";
+src: url("../fonts/Caviar_dreams/CaviarDreams.ttf");}
 
-@font-face {
-  src: url("../fonts/mona_bella/MonaBella.otf"),
-  url("../fonts/mona_bella/MonaBella_Italic.otf");
-  font-family: "MonaBella";
-}
+@font-face {  font-family: "CaviarDreams-Bold";
+src: url("../fonts/Caviar_dreams/CaviarDreams_Bold.ttf");}
 
-@font-face {
-  src: url("../fonts/Caviar_dreams/CaviarDreams.ttf"),
-  url("../fonts/Caviar_dreams/CaviarDreams_BoldItalic.ttf"),
-  url("../fonts/Caviar_dreams/CaviarDreams_Bold.ttf"),
-  url("../fonts/Caviar_dreams/CaviarDreams_Italic.ttf");
-  font-family: "CaviarDreams";
-}
+@font-face {  font-family: "AshtonsHand-Regular";
+src: url('../fonts/AshtonsHand-Regular.ttf');}
 
-@font-face {
-  font-family: "AshtonsHand-Regular";
-  src: url('../fonts/AshtonsHand-Regular.ttf');
-}
+@font-face {  font-family: "AlainasHand-Regular";
+src: url('../fonts/AlainasHand-Regular.ttf');}
 
-@font-face {
-  font-family: "AlainasHand-Regular";
-  src: url('../fonts/AlainasHand-Regular.ttf');
-}
+@font-face {  font-family: "Roboto-BoldCondensed";
+src: url('../fonts/roboto/Roboto-BoldCondensed.ttf');}
 
+@font-face {  font-family: "Roboto-Bold";
+src: url('../fonts/roboto/Roboto-Bold.ttf');}
 
-/************* Scrollbar **********/   
+@font-face {  font-family: "Roboto-Condensed";
+src: url('../fonts/roboto/Roboto-Condensed.ttf');}
+
+@font-face {  font-family: "Roboto-Light";
+src: url('../fonts/roboto/Roboto-Light.ttf');}
+
+@font-face {  font-family: "Roboto-Medium";
+src: url('../fonts/roboto/Roboto-Medium.ttf');}
+
+@font-face {  font-family: "Roboto-Regular";
+src: url('../fonts/roboto/Roboto-Regular.ttf');}
+
+/* Scroll Bar
+  ================================================== */
 ::-webkit-scrollbar {width: 4px; height: 4px;}
 ::-webkit-scrollbar-track {
   background-color: #999;
@@ -45,10 +46,12 @@
   background-color: rgba(0,0,0,.6);
 }
 
-body, html {/*url(../img/body.jpg)*/
+/* *****Styles
+    ================================================== */
+body, html {
   margin: 0;
   padding: 0;
-  background:  #fff;
+  background: #fff;
   font-family: Arial, sans-serif, Helvetica, serif;
 }
 
@@ -69,10 +72,10 @@ h1 {
     padding-top: 18px; 
   }
   h2 {
-    font-family: CaviarDreams;
+    font-family: CaviarDreams-Bold;
     font-weight: bolder;
     font-size: 40px;
-    color: rgb(70, 172, 198);
+    color: #F65A5B;
     text-align: center;
   }
 
@@ -91,6 +94,16 @@ h1 {
     font-weight: bold;
   }
 
+  input[type="text"] {
+    width: 50%;
+    font-size: 18px;
+    font-family: Roboto-BoldCondensed;
+    color: rgba(0, 0, 0, 0.870588);
+    font-weight: normal;
+    letter-spacing: normal;
+    padding: 10px 5px 10px 5px;
+  }
+
   input:focus {
     border-bottom: 2px solid #26a69a;
   }
@@ -103,7 +116,7 @@ h1 {
 
   .button{
     border-radius: 5px;
-    color: #000;
+    color: rgb(63,81,181);
     font-weight: bold;
   }
 
@@ -121,12 +134,15 @@ h1 {
       width: 8%;
     }
   }  
+  .jumbotron {
+    background: url(../img/body.jpg);
+  }
 
   .header-wrapper {
     border-radius: 2px;
     color: #000;
     height: 100px;
-    margin-top: -50px; 
+    margin-top: -45px; 
 
     } .header-wrapper .col-md-10 p {text-align: right; font-size: 12px; margin-top: -10px; font-family: CaviarDreams;}
 
@@ -137,37 +153,43 @@ h1 {
         .header-wrapper .col-md-10 p {font-size: 16px; margin-top: -70px;}
       }
 
+      .main-wrapper {
+      margin-top: -14px;
+      padding: 20px;
+      box-shadow: rgba(0, 0, 0, 0.062) 0px 0px 3px 3px, 
+                  rgba(0, 0, 0, 0.037255) 0px 0px 4px 3px, 
+                  rgba(0, 0, 0, 0.017647) 0px 0px 8px 1px;
+      }
+
       .row-wrapper {
-        margin-top: 40px;
+        margin-top: 20px;
         margin-bottom: 50px;
       }
 
       .row-wrapper .col-md-10 ul li {
         padding-bottom: 30px;
         list-style-type: none;
-        margin-left: -40px;
+        margin-right: 50px;
       }
 
       .row-wrapper .col-md-10 ul li span{
         width: 100%;
+        font-size: 24px;
+        font-family: Roboto-Bold;
       }
 
-      .row-wrapper .col-md-10 ul li span i{
+      .row-wrapper .col-md-10 ul li span i {
        cursor: pointer;
-       font-size: 25px; 
+       font-size: 20px; 
        padding-right: 10px; 
      } 
-     .row-wrapper .col-md-1 ol li{
-      font-size: 22px;
+   /*  .row-wrapper .col-md-1 ol li{
+      font-size: 20px;
       font-weight: bolder;
       color: #F65A5B;
       font-family: AshtonsHand-Regular;
       padding: 10px 10px 10px 0px;
-    }
-
-    .main-wrapper {
-      padding-bottom: 20px;
-    }
+    }*/
 
     .likes {
      background: #39D1B4;
@@ -219,21 +241,22 @@ h1 {
  footer {
   background: url(../img/improvi_header9.png);
   background-attachment: fixed;
-  height: 200px;
-  width: 100%;
-  padding-top: 20px; 
+  height: 170px;
+  width: 100%; 
 }
 
 footer .footer-wrapper {
   text-align: center;
   background: #fff;
   padding: 30px;
-  width: 90%;
+  width: 85.9%;
   margin: 0 auto;
-  border-radius: 5px;
   color: #000;
   font-size: 18px;
   font-family: CaviarDreams;
+  box-shadow: rgba(0, 0, 0, 0.062) 0px 0px 3px 3px, 
+              rgba(0, 0, 0, 0.037255) 0px 0px 4px 3px, 
+              rgba(0, 0, 0, 0.017647) 0px 0px 8px 1px;
 }
 
 .social-buttons-a {
