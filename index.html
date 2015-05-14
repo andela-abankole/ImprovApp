@@ -7,8 +7,11 @@
   <title>Improv App</title>
   <meta name="description" content="">
   <meta name="author" content="">
+  <script src="http://code.angularjs.org/1.1.5/angular.js"></script>
 
   <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
   <!-- Bootstrap  -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 
@@ -18,62 +21,106 @@
 
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/animation.css">
 
 </head>
 <body ng-app="myApp">
-  <div class="jumbotron">
-    <div class="container header-wrapper">
-      <div class="col-md-10">
-        <h1><img src="img/bee.png" height="180px">Improv <span>bee</span></h1>
-        <p>The app that creates and keeps track of several Improv games etc .**.</p>
-      </div>
+    <!-- butterfly -->
+    <div class="container-fluid">
+        <div class="col-md-2">
+          <h1>
+            <img src="img/bee.png">
+          </h1> 
+        </div>
+      <div class="col-md-10"></div>
     </div>
-  </div>
+    <!-- /butterfly -->
 
+  <!-- Main-container -->
   <div class="container main-wrapper" ng-controller="MainController">
-    <div>
-      <input type="" ng-model="userInput" placeholder="Start typing here, Add a new improv " required/>
-      <span></span>
-      <button ng-click="submitInput()" class="button" type="addButton"><i class="fa fa-pencil"></i> write</button>
-    </div>
-
-
     <div class="row row-wrapper">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <h2>Recent Improv</h2>
-
-        <hr />
-
-        <ul>
-          <li ng-repeat="input in enteredInput | orderBy: 'rating.likes': true | orderBy: 'storedInput': true">
-            <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
-            <span ng-show="editorEnabled"> {{ input.storedInput }} 
-              <input type="text" ng-model="input.storedInput">
-              <span ng-click="editorEnabled=!editorEnabled" title="save"><i class="fa fa-check-circle"></i></span>
-            </span>  
-            <p>Posted on {{ input.date | date: "MM/dd/yyyy 'at' h:mma"}} </p>  
-            <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
-            <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>
-            <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
-            <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
-          </li>
-        </ul>
-      </div>
+        <div class="col-md-3">
+          <!-- search-group -->
+          <div>
+            <input id="searchInput" ng-model="search.storedInput" type="search" placeholder="Search for Improvs...">
+            <span ><i class="fa fa-search"></i></span>
+          </div>
+          <!-- /search-group -->
+          <div class="trending-wrapper">
+            <h1>Trending</h1>
+            <ul>
+              <li>
+                <a href="http://www.fasttopten.com/item.aspx?i=1d21314cecf84858b7391e522cfecdb9"><h3>Scare Off the Bench</h3></a>
+                <p>The key to this game is repulsion: consisting of a "bench resident" and a newcomer, it is the job of each newcomer to find an imaginitive way to, as the name of the game implies, scare the bench dweller off so as to assume their position (and so on).  This game invites a maximal amount of players, more heads to provide more inventive ways of inducing unsettling horror (respecting laws of public decency of course, no need to re-enact a Jim Morrison, as long as it's all pantomimed).  Bench dwellers, to increase intensity, can be resistant at first (to up the ante), so long as they don't play Mr. Brave and ruin the entire game for everyone.</p> 
+              </li><hr />
+              <li>
+                <a href="http://www.fasttopten.com/item.aspx?i=ecdbf42187424d71ae8bde612cfecda0"><h3>The Dating Game</h3></a>
+                <p>This game is fun as it involves a bit of mystery: the assorted "bachelors" (any more than three would be over-indulgent) are comprised of any given identity in a hat, as self-invented or supplied by a pooling audience, which the chooser must identify after each has been given a moderate amount of time to express themselves (perhaps two or three rounds, so the game doesn't drag on and/or other participants can get a turn).  The chooser, in order to get a juicy response from each contestant, should ask provocative/evocative questions to up the hilarity and revelation opportunities.</p> 
+              </li>
+              </li>
+            <ul>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input type="" ng-model="userInput" placeholder="Title your improv " id="improv-title"/>
+            <textarea type="" ng-model="userBody" placeholder="Start typing here, Add a Description " id="improv-body"></textarea>
+            <button ng-click="submitInput()" class="btn btn-inverse" type="addbutton">
+              <i class="fa fa-pencil"></i> write
+            </button>
+          </div>
+            <h2>All Improv</h2>
+            <hr />
+            <ul>
+              <!-- Assign the results to a new variable (e.g. filtered) and access it: -->
+              <li ng-repeat="input in filtered = (enteredInput | filter: search) | orderBy: 'rating.likes': true " ng-animate=" 'animate' ">
+                <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
+                <br />
+                <span ng-hide="editorEnabled" id="retrievedBody"> {{ input.storedBody }} </span>  
+                <span ng-show="editorEnabled"> 
+                  <input type="text" ng-model="input.storedInput">
+                  <textarea id="retrievedBody" type="textbox" ng-model="input.storedBody"></textarea>
+                  <span ng-click="editorEnabled=!editorEnabled" title="save"><i class="fa fa-check-circle"></i></span>
+                </span>  
+                <p>Posted on {{ input.date | date: "MM/dd/yyyy 'at' h:mma"}} </p>  
+                <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
+                <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>
+                <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
+                <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
+              </li>
+              <span ng-if="filtered == 0">
+                <strong>No results found...</strong>
+              </span>
+            </ul>
+        </div>
       <div class="col-md-1"></div>
     </div>
-  </div><!-- /container -->
+  </div><!-- /Main-container -->
 
+  <div class="splitter"></div>
+
+  <!-- footer -->
   <footer>
     <div class="footer-wrapper">
       <p>&copy; Andela 2015 | Improv App, Made with <i style="color: #F65A5B" class="fa fa-heart"></i> by Akinjide Bankole</p>
-      <a href="https://twitter.com/JideBhanks" class="btn btn social-buttons-a" title="Twitter"><i class="fa fa-twitter fa-fw"></i></a>   
-      <a href="https://facebook.com/JideBhanks" class="btn btn social-buttons-a" title="Facebook"><i class="fa fa-facebook-f fa-fw"></i></a>
-      <a href="https://github.com/andela-abankole" class="btn btn social-buttons-a" title="Github"><i class="fa fa-github fa-fw"></i></a>
-      <a href="https://andela.slack.com/team/JideBhanks" class="btn btn social-buttons-a" title="Slack"><i class="fa fa-slack fa-fw"></i></a>     
-      <a href="http://andela.co" class="social-buttons-a"title="A ndela"><img src="img/andela-logo.png" height="50px;"></a> 
+      <p>The app that creates and keeps track of several Improv games etc .**.</p>
+        <a href="https://twitter.com/JideBhanks" class="btn btn social-buttons-a" title="Twitter">
+          <i class="fa fa-twitter fa-fw"></i>
+        </a>   
+        <a href="https://facebook.com/JideBhanks" class="btn btn social-buttons-a" title="Facebook">
+          <i class="fa fa-facebook-f fa-fw"></i>
+        </a>
+        <a href="https://github.com/andela-abankole" class="btn btn social-buttons-a" title="Github">
+          <i class="fa fa-github fa-fw"></i>
+        </a>
+        <a href="https://andela.slack.com/team/JideBhanks" class="btn btn social-buttons-a" title="Slack">
+          <i class="fa fa-slack fa-fw"></i>
+        </a>     
+        <a href="http://andela.co" class="social-buttons-a" title="Andela">
+          <img src="img/andela-logo.png" height="50px;">
+        </a> 
     </div>
-  </footer>
+  </footer><!-- /footer -->
 
   <!-- scripts -->
   <!-- Bootstrap core JavaScript
@@ -84,6 +131,7 @@
   <!-- Angular JavaScript
     ================================================== -->
   <script type="text/javascript" src="js/shared/angular.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script type="text/javascript" src="js/shared/ngStorage.min.js"></script>  
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/controllers/MainController.js"></script>
