@@ -108,7 +108,7 @@ hr {
 #improv-body {
   padding: 20px 5px;
   margin-bottom: -20px;
-  width: 80%;
+  width: 60%;
   height: 100px;
   font-size: 15px;
   border: none;
@@ -157,22 +157,32 @@ input[type="text"] {
   border-bottom: 1px solid #777;
 }
 
-button[type="addButton"] { 
+button[type="addButton"] {
+  width: 15%;
   height: 50px;
-  padding: 6px 6px;
-  opacity: 0.8;  
-  font-size: 1em;
-  outline: none;
+  color: rgba(0, 0, 0, .7);
+  background-color: rgb(255, 255, 255);
+  letter-spacing: 0.5px;
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  -webkit-appearance: button;
+  border: none;
+  border-radius: 2px;
+  outline: 0px;
+  padding: 0px 2rem;
   text-transform: uppercase;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 2px 5px 0px, 
+              rgba(0, 0, 0, 0.117647) 0px 2px 10px 0px;
 }
-button[type="addButton"]:focus, button[type="addButton"]:active{
+button[type="addButton"]:hover{
   outline: none;
+  box-shadow: rgba(0, 0, 0, 0.180392) 0px 5px 11px 0px, 
+              rgba(0, 0, 0, 0.14902) 0px 4px 15px 0px;
 }
   @media screen and (min-width: 768px){
     button[type="addButton"]{
-      width: 12%;
+      width: 14%;
     }
   } 
 
@@ -180,9 +190,9 @@ button[type="addButton"]:focus, button[type="addButton"]:active{
   width: 90%;
   margin-top: 20px;
   padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px, 
-              rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px, 
-              rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px
+  box-shadow: rgba(0, 0, 0, 0.027647) 0px 0px 2px 2px, 
+              rgba(0, 0, 0, 0.028647) 0px 0px 2px 2px, 
+              rgba(0, 0, 0, 0.019647) 0px 0px 2px 2px;
 }
 
 .row-wrapper {
@@ -190,19 +200,19 @@ button[type="addButton"]:focus, button[type="addButton"]:active{
   margin-bottom: 50px;
 }
 
-.row-wrapper .col-md-8 ul li {
+.row-wrapper .col-md-9 ul li {
   padding-bottom: 10px;
   list-style-type: none;
   margin-left: -40px;
 }
 
-.row-wrapper .col-md-8 ul li span {
+.row-wrapper .col-md-9 ul li span {
   font-size: 26px;
   width: 100%;
   font-family: Roboto-BoldCondensed;
 }
 
-.row-wrapper .col-md-8 ul li #retrievedBody{
+.row-wrapper .col-md-9 ul li #retrievedBody{
   font-size: 16px;
   font-family: sans-serif;
   margin-top: 10px;
@@ -214,11 +224,15 @@ button[type="addButton"]:focus, button[type="addButton"]:active{
   padding: 10px 5px 10px 5px;
 }
 
-.row-wrapper .col-md-8 ul li span i {
+.row-wrapper .col-md-9 ul li span i {
  cursor: pointer;
  font-size: 20px; 
  padding-right: 10px; 
 } 
+
+.trending-wrapper{
+  margin-top: 120px;
+}
 
 .trending-wrapper ul {
   list-style-type: none;
@@ -245,13 +259,15 @@ button[type="addButton"]:focus, button[type="addButton"]:active{
   text-align: center;
   font-weight: 200;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: background 500ms;
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
   margin-left: 10px;
 }
   .likes:hover{
     color: #39D1B4;
     background: rgba(57, 209, 180, 0.4);
-    transition: background 500ms;
+    box-shadow: rgba(0, 0, 0, 0.180392) 0px 5px 11px 0px, 
+                rgba(0, 0, 0, 0.14902) 0px 4px 15px 0px;
   }
 
 .dislikes {
@@ -268,12 +284,14 @@ button[type="addButton"]:focus, button[type="addButton"]:active{
   text-align: center;
   font-weight: 200;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: background 500ms;
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
 }
   .dislikes:hover {
     color: #F65A5B;
     background: rgba(246, 90, 91, 0.4);
-    transition: background 500ms;
+    box-shadow: rgba(0, 0, 0, 0.180392) 0px 5px 11px 0px, 
+                rgba(0, 0, 0, 0.14902) 0px 4px 15px 0px;
   }
 
 /* ***** Footer
@@ -298,9 +316,9 @@ footer .footer-wrapper {
   color: #000;
   font-size: 18px;
   font-family: CaviarDreams;
-  box-shadow: rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px, 
-              rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px, 
-              rgba(0, 0, 0, 0.017647) 0px 0px 2px 2px;
+  box-shadow: rgba(0, 0, 0, 0.027647) 0px 0px 2px 2px, 
+              rgba(0, 0, 0, 0.028647) 0px 0px 2px 2px, 
+              rgba(0, 0, 0, 0.019647) 0px 0px 2px 2px;
 }
 
 footer .footer-wrapper p {font-size: 12px}
