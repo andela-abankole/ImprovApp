@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head >
+<html lang="en" ng-app="myApp">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
   <script src="http://code.angularjs.org/1.1.5/angular.js"></script>
 
   <!-- Styles -->
+  <!-- toastr -->
   <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
   <!-- Bootstrap  -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 
@@ -19,12 +19,12 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 
-  <!-- custom -->
+  <!-- custom --> 
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
 
 </head>
-<body ng-app="myApp">
+<body>
     <!-- butterfly -->
     <div class="container-fluid">
         <div class="col-md-2">
@@ -42,8 +42,8 @@
         <div class="col-md-3">
           <!-- search-group -->
           <div>
-            <input id="searchInput" ng-model="search.storedInput" type="search" placeholder="Search for Improvs...">
             <span ><i class="fa fa-search"></i></span>
+            <input id="searchInput" ng-model="search.storedInput" type="search" placeholder="Search for Improvs...">
           </div>
           <!-- /search-group -->
           <div class="trending-wrapper">
@@ -57,15 +57,14 @@
                 <a href="http://www.fasttopten.com/item.aspx?i=ecdbf42187424d71ae8bde612cfecda0"><h3>The Dating Game</h3></a>
                 <p>This game is fun as it involves a bit of mystery: the assorted "bachelors" (any more than three would be over-indulgent) are comprised of any given identity in a hat, as self-invented or supplied by a pooling audience, which the chooser must identify after each has been given a moderate amount of time to express themselves (perhaps two or three rounds, so the game doesn't drag on and/or other participants can get a turn).  The chooser, in order to get a juicy response from each contestant, should ask provocative/evocative questions to up the hilarity and revelation opportunities.</p> 
               </li>
-              </li>
             <ul>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div>
             <input type="" ng-model="userInput" placeholder="Title your improv " id="improv-title"/>
             <textarea type="" ng-model="userBody" placeholder="Start typing here, Add a Description " id="improv-body"></textarea>
-            <button ng-click="submitInput()" class="btn btn-inverse" type="addbutton">
+            <button ng-click="submitInput()" type="addbutton">
               <i class="fa fa-pencil"></i> write
             </button>
           </div>
@@ -73,7 +72,7 @@
             <hr />
             <ul>
               <!-- Assign the results to a new variable (e.g. filtered) and access it: -->
-              <li ng-repeat="input in filtered = (enteredInput | filter: search) | orderBy: 'rating.likes': true " ng-animate=" 'animate' ">
+              <li ng-repeat="input in filtered = (enteredInput | filter: search) | orderBy: 'rating.likes': true" ng-animate=" 'animate' ">
                 <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
                 <br />
                 <span ng-hide="editorEnabled" id="retrievedBody"> {{ input.storedBody }} </span>  
@@ -88,12 +87,11 @@
                 <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
                 <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
               </li>
-              <span ng-if="filtered == 0">
-                <strong>No results found...</strong>
+              <span ng-if="filtered == 0 || filtered == 1 ">
+                  <strong>No results found...</strong>
               </span>
             </ul>
         </div>
-      <div class="col-md-1"></div>
     </div>
   </div><!-- /Main-container -->
 
