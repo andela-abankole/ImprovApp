@@ -87,7 +87,7 @@
                 <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
                 <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
               </li>
-              <span ng-if="filtered == 0 || filtered == 1 ">
+              <span ng-if="filtered == 0">
                   <strong>No results found...</strong>
               </span>
             </ul>
