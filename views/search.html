@@ -1,0 +1,15 @@
+<!-- search icon -->
+<span ><i class="fa fa-search"></i></span>
+<!-- seacrh input -->
+<input id="searchInput" ng-model="search.post_title" type="search" placeholder="Search for Improvs...">
+<span ng-if="filtered == filtered">
+  <!-- pluralize -->
+  <h3> 
+    <ng-pluralize count = "filtered.length"
+                  when = "{'0': 'No Improv.',
+                  'one': '1 Improv.',
+                  'other': '{} Improvs.'
+                }">
+    </ng-pluralize>
+  </h3>
+</span>

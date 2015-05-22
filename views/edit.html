@@ -1,0 +1,18 @@
+<!-- Assign the results to a new variable (e.g. filtered) and access it: -->
+<li ng-repeat="input in filtered = (improvs | filter: search) | orderBy: 'rating.likes - rating.dislikes': true" ng-animate=" 'animate' ">
+  <span ng-hide="editorEnabled"> {{input.post_title }} </span>  
+  <br />
+  <span ng-hide="editorEnabled" id="retrievedBody"> {{ input.post_description }} </span>  
+  <span ng-show="editorEnabled"> 
+    <input type="text" ng-model="input.post_title">
+    <textarea id="retrievedBody" type="textbox" ng-model="input.post_description"></textarea>
+    <span ng-click="editorEnabled=!editorEnabled" title="save"><i class="fa fa-check-circle"></i></span>
+  </span>
+  <br />
+  <p>Posted on {{ input.date | date: "MM/dd/yyyy 'at' h:mma"}} </p>
+  <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
+  <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>  
+  <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>
+  <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p>
+  <hr />
+</li>
