@@ -1,0 +1,28 @@
+{
+  "name": "ImprovApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andela-abankole/ImprovApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-abankole/ImprovApp/issues"
+  },
+  "homepage": "https://github.com/andela-abankole/ImprovApp",
+  "devDependencies": {
+    "angular-mocks": "^1.3.15",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.32",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.5",
+    "karma-ng-html2js-preprocessor": "^0.1.2"
+  }
+}
