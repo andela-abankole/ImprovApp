@@ -7,24 +7,27 @@
   <title>Improv App</title>
   <meta name="description" content="">
   <meta name="author" content="">
-  <script src="http://code.angularjs.org/1.1.5/angular.js"></script>
+  <!-- scripts -->
+  <script src="https://code.angularjs.org/1.1.5/angular.js"></script>
+  <script type="text/javascript" src="js/shared/angular.min.js"></script>
 
   <!-- Styles -->
   <!-- toastr -->
-  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
+
   <!-- Bootstrap  -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 
   <!-- fonts-awesome -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 
   <!-- custom --> 
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
 
 </head>
-<body>
+<body ng-controller="MainController" class="ng-cloak">
     <!-- butterfly -->
     <div class="container-fluid">
         <div class="col-md-2">
@@ -32,18 +35,17 @@
             <img src="img/bee.png">
           </h1> 
         </div>
-      <div class="col-md-10"></div>
     </div>
     <!-- /butterfly -->
 
   <!-- Main-container -->
-  <div class="container main-wrapper" ng-controller="MainController">
+  <div class="container main-wrapper">
     <div class="row row-wrapper">
         <div class="col-md-3">
           <!-- search-group -->
           <div>
-            <span ><i class="fa fa-search"></i></span>
-            <input id="searchInput" ng-model="search.storedInput" type="search" placeholder="Search for Improvs...">
+            <!-- New HTML Element controlled by search directive -->
+            <search></search>
           </div>
           <!-- /search-group -->
           <div class="trending-wrapper">
@@ -62,32 +64,15 @@
         </div>
         <div class="col-md-9">
           <div>
-            <input type="" ng-model="userInput" placeholder="Title your improv " id="improv-title"/>
-            <textarea type="" ng-model="userBody" placeholder="Start typing here, Add a Description " id="improv-body"></textarea>
-            <button ng-click="submitInput()" type="addbutton">
-              <i class="fa fa-pencil"></i> write
-            </button>
+            <!-- New HTML Element controlled by userinput directive -->
+            <userinput></userinput>
           </div>
             <h2>All Improv</h2>
             <hr />
-            <ul>
-              <!-- Assign the results to a new variable (e.g. filtered) and access it: -->
-              <li ng-repeat="input in filtered = (enteredInput | filter: search) | orderBy: 'rating.likes': true" ng-animate=" 'animate' ">
-                <span ng-hide="editorEnabled"> {{ input.storedInput }} </span>  
-                <br />
-                <span ng-hide="editorEnabled" id="retrievedBody"> {{ input.storedBody }} </span>  
-                <span ng-show="editorEnabled"> 
-                  <input type="text" ng-model="input.storedInput">
-                  <textarea id="retrievedBody" type="textbox" ng-model="input.storedBody"></textarea>
-                  <span ng-click="editorEnabled=!editorEnabled" title="save"><i class="fa fa-check-circle"></i></span>
-                </span>  
-                <p>Posted on {{ input.date | date: "MM/dd/yyyy 'at' h:mma"}} </p>  
-                <span ng-click="delete($index)" title="delete"><i class="fa fa-remove"></i></span>  
-                <span ng-click="editorEnabled=!editorEnabled" title="edit"><i class="fa fa-pencil"></i></span>
-                <p class="likes" ng-click="thumbsUp(input)" title="Vote Up"><i class="fa fa-thumbs-o-up"></i> {{ input.rating.likes }}</p>   
-                <p class="dislikes" ng-click="thumbsDown(input)" title="Vote Down"><i class="fa fa-thumbs-o-down"></i> {{ input.rating.dislikes }} </p> 
-              </li>
-              <span ng-if="filtered == 0">
+            <ul class="ng-cloak">
+              <!-- New HTML Element controlled by edit directive -->
+              <edit></edit> 
+              <span ng-if="filtered == filtered.length">
                   <strong>No results found...</strong>
               </span>
             </ul>
@@ -128,10 +113,14 @@
 
   <!-- Angular JavaScript
     ================================================== -->
-  <script type="text/javascript" src="js/shared/angular.min.js"></script>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
   <script type="text/javascript" src="js/shared/ngStorage.min.js"></script>  
   <script type="text/javascript" src="js/app.js"></script>
+  <!-- Controllers -->
   <script type="text/javascript" src="js/controllers/MainController.js"></script>
+  <!-- directives -->
+  <script type="text/javascript" src="js/directives/search.js"></script>
+  <script type="text/javascript" src="js/directives/userinput.js"></script>
+  <script type="text/javascript" src="js/directives/edit.js"></script>
 </body>
 </html>
